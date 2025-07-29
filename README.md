@@ -80,7 +80,7 @@ le0\_08
 
 ### ▶️ Run It
 
-```bash
+
 python tailoredwordlist.py
 ```
 
