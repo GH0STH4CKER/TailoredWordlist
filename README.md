@@ -15,10 +15,10 @@ A customizable Python-based password wordlist generator designed for *brute-forc
 - 📏 Max length filter + combo count limiter
 - 💾 Outputs to `wordlist.txt`
 
-## Preview:
-<img width="716" height="762" alt="image" src="https://github.com/user-attachments/assets/224eb7ef-642a-44cf-8fea-36fa421ebf73" />
-
 ---
+## Preview:
+<img width="716" height="762" alt="image" src="https://github.com/user-attachments/assets/224eb7ef-642a-44cf-8fea-36fa421ebf73">
+
 
 ## 🧪 Example Output
 
