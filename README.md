@@ -24,7 +24,7 @@ A customizable Python-based password wordlist generator designed for *brute-forc
 
 If inputs include:
 
-```
+
 
 Name: john
 Surname: doe
