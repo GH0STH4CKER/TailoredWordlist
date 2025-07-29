@@ -1,5 +1,3 @@
-Got it! Here’s your **clean** Markdown `README.md` without any personal data — using placeholders like (john, doe, 1980-08-08, leo):
-
 ```markdown
 # 🔐 Tailored Wordlist Generator
 
