@@ -78,8 +78,6 @@ le0\_08
   pip install colorama
 ````
 
----
-
 ### ▶️ Run It
 
 ```bash
