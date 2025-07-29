@@ -21,17 +21,20 @@ A customizable Python-based password wordlist generator designed for *brute-forc
 
 
 ## 🧪 Example Output
-
+```
 If inputs include:
-
-
-
+```
 Name: john
 Surname: doe
 Birthdate: 1980-08-08
 Pet's Name: leo
 Love: \[your location]
 Other: \[your keyword]
+```
+johndoe
+john123
+johnleo
+leo123
 
 ```
 
