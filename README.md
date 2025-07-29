@@ -2,7 +2,7 @@
 # 🔐 Tailored Wordlist Generator
 
 A customizable Python-based password wordlist generator designed for *brute-force attacks* in ethical hacking and penetration testing. Create powerful, personalized password lists using names, dates, personal info — with optional 1337-style character replacement and special character placement.
-
+```
 ---
 
 ## 🚀 Features
