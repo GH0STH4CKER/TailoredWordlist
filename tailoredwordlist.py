@@ -1,4 +1,5 @@
 import itertools
+from itertools import combinations
 import threading
 from colorama import Fore, Style, init
 
@@ -30,7 +31,7 @@ def show_banner():
   |_| |__,|_|_|___|_| |___|___|_____|___|_| |___|_|_|___|_|  
 """)
     print(Fore.MAGENTA + "-" * 60)
-    print(Fore.GREEN + Style.BRIGHT + "                [+] Coded by GH0STH4CKER")
+    print(Fore.GREEN + Style.BRIGHT + "      [+] Coded by GH0STH4CKER      [+] version 1.2.0")
     print(Fore.MAGENTA + "_" * 60)
     print(Fore.YELLOW + Style.BRIGHT + "+----------------------------------------------------------+")
     print(Fore.CYAN + Style.BRIGHT + "|             Because “123456” ain’t enough.               |")
@@ -60,18 +61,29 @@ def gather_inputs():
 
     return components, specials, middle_specials, enable_leet, max_length, combo_limit
 
-def generate_leet_variants(word):
-    def recurse(index, current):
-        if index == len(word):
-            return [''.join(current)]
-        char = word[index]
-        substitutions = leet_map.get(char, [char])
-        results = []
-        for sub in substitutions:
-            results += recurse(index + 1, current + [sub])
-        return results
+def generate_partial_leet_variants(word):
+    indexes = [i for i, c in enumerate(word) if c in leet_map]
+    variants = set()
+    variants.add(word)  # keep original
 
-    return set(recurse(0, []))
+    # Replace 1 to all characters that have leet versions
+    for r in range(1, len(indexes) + 1):
+        for positions in combinations(indexes, r):
+            def recurse(idx=0, current=[]):
+                if idx == len(word):
+                    variants.add(''.join(current))
+                    return
+
+                if idx in positions:
+                    for sub in leet_map.get(word[idx], [word[idx]]):
+                        recurse(idx + 1, current + [sub])
+                else:
+                    recurse(idx + 1, current + [word[idx]])
+
+            recurse()
+
+    return variants
+
 
 def insert_specials(word, specials, middle_specials):
     variants = set()
@@ -91,10 +103,10 @@ def format_combos(raw_combos, specials, middle_specials, leet_mode, max_length):
     final_set = set()
 
     for combo in raw_combos:
-        base_variants = {combo}
-
         if leet_mode:
-            base_variants |= generate_leet_variants(combo)
+            base_variants = generate_partial_leet_variants(combo)
+        else:
+            base_variants = {combo}
 
         for word in base_variants:
             if 0 < len(word) <= max_length:
@@ -113,7 +125,7 @@ def generate_combos_threaded(parts, specials, middle_specials, leet_mode, max_le
                 variants = set()
                 plain = ''.join(perm)
                 underscore = '_'.join(perm)
-                caps = ''.join(p.capitalize() for p in perm)
+                caps = ''.join(p.capitalize() if not p.isnumeric() else p for p in perm)
                 reversed_all = ''.join(p[::-1] for p in perm)
 
                 variants.update([plain, underscore, caps, reversed_all])
